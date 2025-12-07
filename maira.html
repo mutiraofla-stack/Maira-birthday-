@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Maira</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at top,#1a0033,#000);
+}
+
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+}
+
+.balloon{
+  position:absolute;
+  bottom:-120px;
+  width:50px;
+  height:70px;
+  border-radius:50%;
+  animation: float 8s linear infinite;
+  z-index:3;
+}
+.b1{left:10%; background:red;}
+.b2{left:30%; background:blue; animation-delay:2s;}
+.b3{left:50%; background:yellow; animation-delay:4s;}
+.b4{left:70%; background:green; animation-delay:1s;}
+.b5{left:90%; background:pink; animation-delay:3s;}
+
+@keyframes float{
+  from{bottom:-120px;}
+  to{bottom:110%;}
+}
+
+.container{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  z-index:5;
+  color:white;
+}
+
+.bgtext{
+  position:absolute;
+  top:8%;
+  font-size:32px;
+  font-weight:bold;
+  color:#ff69b4;
+  text-shadow:0 0 15px hotpink;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px hotpink;}
+  to{text-shadow:0 0 25px deeppink;}
+}
+
+.gift{
+  width:190px;
+  height:190px;
+  background:#ff4081;
+  border-radius:18px;
+  position:relative;
+  cursor:pointer;
+  animation: bounce 1.5s infinite;
+}
+.gift::before{
+  content:"";
+  position:absolute;
+  width:30px;
+  height:190px;
+  background:white;
+  left:50%;
+  transform:translateX(-50%);
+}
+.gift::after{
+  content:"";
+  position:absolute;
+  width:190px;
+  height:30px;
+  background:white;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.lid{
+  width:220px;
+  height:55px;
+  background:#e91e63;
+  position:absolute;
+  top:-55px;
+  left:-15px;
+  border-radius:12px;
+  transition:1s;
+}
+.open .lid{
+  transform:rotate(-25deg) translate(-35px,-40px);
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-18px);}
+}
+
+.card{
+  display:none;
+  background:white;
+  color:#333;
+  margin-top:20px;
+  padding:22px;
+  border-radius:20px;
+  width:88%;
+  max-width:360px;
+  animation: fade 1s ease;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:scale(.7);}
+  to{opacity:1; transform:scale(1);}
+}
+
+button{
+  background:#ff4081;
+  color:white;
+  border:none;
+  padding:12px 25px;
+  border-radius:25px;
+  margin-top:15px;
+  font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<div class="balloon b1"></div>
+<div class="balloon b2"></div>
+<div class="balloon b3"></div>
+<div class="balloon b4"></div>
+<div class="balloon b5"></div>
+
+<div class="container">
+
+  <div class="bgtext">🎂 Happy Birthday Maira 🎂</div>
+
+  <div class="gift" onclick="openGift()" id="giftBox">
+    <div class="lid"></div>
+  </div>
+
+  <!-- CARD 1 -->
+  <div class="card" id="card1">
+    <h2>🎉 Happy Birthday Meri Jaan Maira 💖</h2>
+    <p>
+      Tum meri life ki sabse pyari dost ho 🥺❤️  
+      Tumhari smile meri tension tak chura leti hai 😊✨  
+      Tum sach me ek blessing ho 💝  
+    </p>
+    <button onclick="next1()">Next 🎁</button>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="card" id="card2">
+    <h2>🌸 Special Wishes For You 🌸</h2>
+    <p>
+      Allah tumhe hamesha khush rakhe 🤲💫  
+      Tumhari har ek wish poori ho 🎯💖  
+      Tumhe kabhi koi dukh choo bhi na sake 🛡️❤️  
+    </p>
+    <button onclick="next2()">Next 💕</button>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="card" id="card3">
+    <h2>💞 From My Heart 💞</h2>
+    <p>
+      Tum sirf meri best friend nahi ho  
+      Tum meri jaan ho 🥹❤️  
+      Tumhari dosti meri life ka sabse khoobsurat tohfa hai 🎁💎  
+    </p>
+    <button onclick="next3()">Next 🌹</button>
+  </div>
+
+  <!-- CARD 4 FINAL -->
+  <div class="card" id="card4">
+    <h2>🤍 Aakhri Dua Tumhare Liye 🤍</h2>
+    <p>
+      Ya Allah, Maira ko har bala se bachana 🤲  
+      Uski zindagi ko sirf roshni se bhar dena ✨  
+      Uske chehre ki muskaan kabhi kam na hone dena 😊  
+      Ameen 🤍  
+    </p>
+
+    <h3 style="color:#e91e63">💝 I Love You Meri Jaan 💝</h3>
+    <h2>🎉 Once Again Happy Birthday 🎉</h2>
+  </div>
+
+</div>
+
+<script>
+function openGift(){
+  document.getElementById("giftBox").classList.add("open");
+  setTimeout(()=>{ document.getElementById("card1").style.display="block"; },1000);
+}
+function next1(){
+  document.getElementById("card1").style.display="none";
+  document.getElementById("card2").style.display="block";
+}
+function next2(){
+  document.getElementById("card2").style.display="none";
+  document.getElementById("card3").style.display="block";
+}
+function next3(){
+  document.getElementById("card3").style.display="none";
+  document.getElementById("card4").style.display="block";
+}
+
+/* REAL FIREWORKS */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+
+class Particle{
+  constructor(x,y,color){
+    this.x=x; this.y=y; this.color=color;
+    this.radius=2; this.life=100;
+    this.vx=(Math.random()-0.5)*6;
+    this.vy=(Math.random()-0.5)*6;
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+    ctx.fillStyle=this.color;
+    ctx.fill();
+  }
+  update(){
+    this.x+=this.vx;
+    this.y+=this.vy;
+    this.life--;
+  }
+}
+
+let particles=[];
+function firework(){
+  let x=Math.random()*canvas.width;
+  let y=Math.random()*canvas.height/2;
+  let color=`hsl(${Math.random()*360},100%,60%)`;
+  for(let i=0;i<90;i++){
+    particles.push(new Particle(x,y,color));
+  }
+}
+setInterval(firework,800);
+
+function animate(){
+  ctx.fillStyle="rgba(0,0,0,0.2)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  particles.forEach((p,i)=>{
+    p.update(); p.draw();
+    if(p.life<=0) particles.splice(i,1);
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>
